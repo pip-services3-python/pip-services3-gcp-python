@@ -1,0 +1,7 @@
+pip\_services3\_gcp.connect.GcpConnectionResolver module
+========================================================
+
+.. automodule:: pip_services3_gcp.connect.GcpConnectionResolver
+   :members:
+   :undoc-members:
+   :show-inheritance:

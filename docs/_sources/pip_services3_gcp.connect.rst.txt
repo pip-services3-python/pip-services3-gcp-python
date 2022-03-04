@@ -1,0 +1,19 @@
+pip\_services3\_gcp.connect package
+===================================
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   pip_services3_gcp.connect.GcpConnectionParams
+   pip_services3_gcp.connect.GcpConnectionResolver
+
+Module contents
+---------------
+
+.. automodule:: pip_services3_gcp.connect
+   :members:
+   :undoc-members:
+   :show-inheritance:

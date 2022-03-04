@@ -1,0 +1,21 @@
+pip\_services3\_gcp.services package
+====================================
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   pip_services3_gcp.services.CloudFunctionAction
+   pip_services3_gcp.services.CloudFunctionService
+   pip_services3_gcp.services.CommandableCloudFunctionService
+   pip_services3_gcp.services.ICloudFunctionService
+
+Module contents
+---------------
+
+.. automodule:: pip_services3_gcp.services
+   :members:
+   :undoc-members:
+   :show-inheritance:

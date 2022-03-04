@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pip_services3_gcp.services.CloudFunctionService module &mdash; pip-services3-gcp  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pip_services3_gcp.services.CommandableCloudFunctionService module" href="pip_services3_gcp.services.CommandableCloudFunctionService.html" />
+    <link rel="prev" title="pip_services3_gcp.services.CloudFunctionAction module" href="pip_services3_gcp.services.CloudFunctionAction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> pip-services3-gcp
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pip_services3_gcp</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pip_services3_gcp.html">pip_services3_gcp package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pip_services3_gcp.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pip_services3_gcp.clients.html">pip_services3_gcp.clients package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pip_services3_gcp.connect.html">pip_services3_gcp.connect package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pip_services3_gcp.containers.html">pip_services3_gcp.containers package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="pip_services3_gcp.services.html">pip_services3_gcp.services package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pip_services3_gcp.html#module-pip_services3_gcp">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pip-services3-gcp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="modules.html">pip_services3_gcp</a> &raquo;</li>
+          <li><a href="pip_services3_gcp.html">pip_services3_gcp package</a> &raquo;</li>
+          <li><a href="pip_services3_gcp.services.html">pip_services3_gcp.services package</a> &raquo;</li>
+      <li>pip_services3_gcp.services.CloudFunctionService module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/pip_services3_gcp.services.CloudFunctionService.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-pip_services3_gcp.services.CloudFunctionService">
+<span id="pip-services3-gcp-services-cloudfunctionservice-module"></span><h1>pip_services3_gcp.services.CloudFunctionService module<a class="headerlink" href="#module-pip_services3_gcp.services.CloudFunctionService" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pip_services3_gcp.services.CloudFunctionService.CloudFunctionService">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pip_services3_gcp.services.CloudFunctionService.</span></span><span class="sig-name descname"><span class="pre">CloudFunctionService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pip_services3_gcp.services.CloudFunctionService.CloudFunctionService" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="pip_services3_gcp.services.ICloudFunctionService.html#pip_services3_gcp.services.ICloudFunctionService.ICloudFunctionService" title="pip_services3_gcp.services.ICloudFunctionService.ICloudFunctionService"><code class="xref py py-class docutils literal notranslate"><span class="pre">pip_services3_gcp.services.ICloudFunctionService.ICloudFunctionService</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">pip_services3_commons.run.IOpenable.IOpenable</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">pip_services3_commons.config.IConfigurable.IConfigurable</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">pip_services3_commons.refer.IReferenceable.IReferenceable</span></code></p>
+<p>Abstract service that receives remove calls via Google Function protocol.</p>
+<p>This service is intended to work inside CloudFunction container that
+exposes registered actions externally.</p>
+<dl class="simple">
+<dt>### Configuration parameters ###</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>dependencies:</dt><dd><ul>
+<li><p>controller:            override for Controller dependency</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt>### References ###</dt><dd><ul class="simple">
+<li><p><cite>*:logger:*:*:1.0</cite>           (optional) <code class="xref py py-class docutils literal notranslate"><span class="pre">ILogger</span></code> components to pass log messages</p></li>
+<li><p><cite>*:counters:*:*:1.0</cite>         (optional) <code class="xref py py-class docutils literal notranslate"><span class="pre">ICounters</span></code> components to pass collected measurements</p></li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyCloudFunctionService</span><span class="p">(</span><span class="n">CloudFunctionService</span><span class="p">):</span>
+     <span class="n">_controller</span><span class="p">:</span> <span class="n">IMyController</span>
+   <span class="o">...</span>
+
+   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;v1.myservice&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dependency_resolver</span><span class="o">.</span><span class="n">put</span><span class="p">(</span>
+            <span class="s2">&quot;controller&quot;</span><span class="p">,</span>
+            <span class="n">Descriptor</span><span class="p">(</span><span class="s2">&quot;mygroup&quot;</span><span class="p">,</span><span class="s2">&quot;controller&quot;</span><span class="p">,</span><span class="s2">&quot;*&quot;</span><span class="p">,</span><span class="s2">&quot;*&quot;</span><span class="p">,</span><span class="s2">&quot;1.0&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+
+   <span class="k">def</span> <span class="nf">set_references</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">references</span><span class="p">:</span> <span class="n">IReferences</span><span class="p">):</span>
+      <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_references</span><span class="p">(</span><span class="n">references</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_controller</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dependency_resolver</span><span class="o">.</span><span class="n">get_required</span><span class="p">(</span><span class="s2">&quot;controller&quot;</span><span class="p">)</span>
+
+
+   <span class="k">def</span> <span class="nf">__action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">):</span>
+        <span class="n">correlation_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_correlation_id</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+        <span class="nb">id</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_controller</span><span class="o">.</span><span class="n">get_my_data</span><span class="p">(</span><span class="n">correlationId</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span>
+
+   <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+       <span class="bp">self</span><span class="o">.</span><span class="n">register_action</span><span class="p">(</span><span class="s2">&quot;get_my_data&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">__action</span><span class="p">)</span>
+
+       <span class="o">...</span>
+
+
+<span class="n">service</span> <span class="o">=</span> <span class="n">MyCloudFunctionService</span><span class="p">()</span>
+<span class="n">service</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">ConfigParams</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span>
+    <span class="s2">&quot;connection.protocol&quot;</span><span class="p">,</span> <span class="s2">&quot;http&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;connection.host&quot;</span><span class="p">,</span> <span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;connection.port&quot;</span><span class="p">,</span> <span class="mi">8080</span>
+<span class="p">))</span>
+
+<span class="n">service</span><span class="o">.</span><span class="n">set_references</span><span class="p">(</span><span class="n">References</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span>
+    <span class="n">Descriptor</span><span class="p">(</span><span class="s2">&quot;mygroup&quot;</span><span class="p">,</span><span class="s2">&quot;controller&quot;</span><span class="p">,</span><span class="s2">&quot;default&quot;</span><span class="p">,</span><span class="s2">&quot;default&quot;</span><span class="p">,</span><span class="s2">&quot;1.0&quot;</span><span class="p">),</span> <span class="n">controller</span>
+<span class="p">))</span>
+
+<span class="n">service</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;123&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="pip_services3_gcp.services.CloudFunctionService.CloudFunctionService.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">correlation_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pip_services3_gcp.services.CloudFunctionService.CloudFunctionService.close" title="Permalink to this definition"></a></dt>
+<dd><p>Closes component and frees used resources.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>correlation_id</strong> – (optional) transaction id to trace execution through call chain.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pip_services3_gcp.services.CloudFunctionService.CloudFunctionService.configure">
+<span class="sig-name descname"><span class="pre">configure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pip_services3_commons.config.ConfigParams.ConfigParams</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pip_services3_gcp.services.CloudFunctionService.CloudFunctionService.configure" title="Permalink to this definition"></a></dt>
+<dd><p>Configures object by passing configuration parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> – configuration parameters to be set.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pip_services3_gcp.services.CloudFunctionService.CloudFunctionService.get_actions">
+<span class="sig-name descname"><span class="pre">get_actions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="pip_services3_gcp.services.CloudFunctionAction.html#pip_services3_gcp.services.CloudFunctionAction.CloudFunctionAction" title="pip_services3_gcp.services.CloudFunctionAction.CloudFunctionAction"><span class="pre">pip_services3_gcp.services.CloudFunctionAction.CloudFunctionAction</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pip_services3_gcp.services.CloudFunctionService.CloudFunctionService.get_actions" title="Permalink to this definition"></a></dt>
+<dd><p>Get all actions supported by the service.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>an array with supported actions.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pip_services3_gcp.services.CloudFunctionService.CloudFunctionService.is_open">
+<span class="sig-name descname"><span class="pre">is_open</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#pip_services3_gcp.services.CloudFunctionService.CloudFunctionService.is_open" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if the component is opened.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>true if the component has been opened and false otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pip_services3_gcp.services.CloudFunctionService.CloudFunctionService.open">
+<span class="sig-name descname"><span class="pre">open</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">correlation_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pip_services3_gcp.services.CloudFunctionService.CloudFunctionService.open" title="Permalink to this definition"></a></dt>
+<dd><p>Opens the component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>correlation_id</strong> – (optional) transaction id to trace execution through call chain.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pip_services3_gcp.services.CloudFunctionService.CloudFunctionService.register">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pip_services3_gcp.services.CloudFunctionService.CloudFunctionService.register" title="Permalink to this definition"></a></dt>
+<dd><p>Registers all service routes in HTTP endpoint.
+This method is called by the service and must be overriden
+in child classes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pip_services3_gcp.services.CloudFunctionService.CloudFunctionService.set_references">
+<span class="sig-name descname"><span class="pre">set_references</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">references</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pip_services3_commons.refer.IReferences.IReferences</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pip_services3_gcp.services.CloudFunctionService.CloudFunctionService.set_references" title="Permalink to this definition"></a></dt>
+<dd><p>Sets references to dependent components.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>references</strong> – references to locate the component dependencies.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pip_services3_gcp.services.CloudFunctionAction.html" class="btn btn-neutral float-left" title="pip_services3_gcp.services.CloudFunctionAction module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pip_services3_gcp.services.CommandableCloudFunctionService.html" class="btn btn-neutral float-right" title="pip_services3_gcp.services.CommandableCloudFunctionService module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Sergey Seroukhov.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

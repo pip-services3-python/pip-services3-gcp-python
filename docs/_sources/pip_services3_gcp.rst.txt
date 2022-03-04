@@ -1,0 +1,21 @@
+pip\_services3\_gcp package
+===========================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   pip_services3_gcp.clients
+   pip_services3_gcp.connect
+   pip_services3_gcp.containers
+   pip_services3_gcp.services
+
+Module contents
+---------------
+
+.. automodule:: pip_services3_gcp
+   :members:
+   :undoc-members:
+   :show-inheritance:

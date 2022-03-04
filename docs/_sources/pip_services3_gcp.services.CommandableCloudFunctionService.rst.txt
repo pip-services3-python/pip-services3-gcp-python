@@ -1,0 +1,7 @@
+pip\_services3\_gcp.services.CommandableCloudFunctionService module
+===================================================================
+
+.. automodule:: pip_services3_gcp.services.CommandableCloudFunctionService
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+pip\_services3\_gcp.services.CloudFunctionAction module
+=======================================================
+
+.. automodule:: pip_services3_gcp.services.CloudFunctionAction
+   :members:
+   :undoc-members:
+   :show-inheritance:

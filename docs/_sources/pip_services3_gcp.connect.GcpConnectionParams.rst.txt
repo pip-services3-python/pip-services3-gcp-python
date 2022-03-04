@@ -1,0 +1,7 @@
+pip\_services3\_gcp.connect.GcpConnectionParams module
+======================================================
+
+.. automodule:: pip_services3_gcp.connect.GcpConnectionParams
+   :members:
+   :undoc-members:
+   :show-inheritance:
