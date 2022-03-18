@@ -6,7 +6,6 @@ from pip_services3_commons.refer import Descriptor, IReferences
 from pip_services3_commons.validate import ObjectSchema, FilterParamsSchema, PagingParamsSchema
 
 from pip_services3_gcp.services import CloudFunctionService
-from ..CloudFunctionRequestSchema import CloudFunctionRequestSchema
 from ..Dummy import Dummy
 from ..DummySchema import DummySchema
 from ..IDummyController import IDummyController
@@ -95,7 +94,7 @@ class DummyCloudFunctionService(CloudFunctionService):
     def register(self):
         self._register_action(
             'get_dummies',
-            CloudFunctionRequestSchema()
+            ObjectSchema(True)
                 .with_optional_property('body',
                                         ObjectSchema(True)
                                         .with_optional_property('filter', FilterParamsSchema())
@@ -105,7 +104,7 @@ class DummyCloudFunctionService(CloudFunctionService):
 
         self._register_action(
             'get_dummy_by_id',
-            CloudFunctionRequestSchema()
+            ObjectSchema(True)
                 .with_optional_property('body',
                                         ObjectSchema(True)
                                         .with_optional_property('dummy_id', TypeCode.String)),
@@ -114,7 +113,7 @@ class DummyCloudFunctionService(CloudFunctionService):
 
         self._register_action(
             'create_dummy',
-            CloudFunctionRequestSchema()
+            ObjectSchema(True)
                 .with_optional_property('body',
                                         ObjectSchema(True)
                                         .with_required_property('dummy', DummySchema())),
@@ -123,7 +122,7 @@ class DummyCloudFunctionService(CloudFunctionService):
 
         self._register_action(
             'update_dummy',
-            CloudFunctionRequestSchema()
+            ObjectSchema(True)
                 .with_optional_property('body',
                                         ObjectSchema(True)
                                         .with_required_property('dummy', DummySchema())),
@@ -132,7 +131,7 @@ class DummyCloudFunctionService(CloudFunctionService):
 
         self._register_action(
             'delete_dummy',
-            CloudFunctionRequestSchema()
+            ObjectSchema(True)
                 .with_optional_property('body',
                                         ObjectSchema(True)
                                         .with_required_property('dummy_id', TypeCode.String)),

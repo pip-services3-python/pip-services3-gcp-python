@@ -93,32 +93,42 @@ class DummyCloudFunction(CloudFunction):
     def register(self):
         self._register_action(
             'get_dummies',
-            ObjectSchema(True)
-                .with_optional_property('filter', FilterParamsSchema())
-                .with_optional_property('paging', PagingParamsSchema()),
+            ObjectSchema(True).with_optional_property('body',
+                ObjectSchema(True)
+                    .with_optional_property('filter', FilterParamsSchema())
+                    .with_optional_property('paging', PagingParamsSchema())
+            ),
             self.__get_page_by_filter
         )
 
         self._register_action(
             'get_dummy_by_id',
-            ObjectSchema(True).with_optional_property('dummy_id', TypeCode.String),
+            ObjectSchema(True).with_optional_property('body',
+                ObjectSchema(True).with_optional_property('dummy_id', TypeCode.String)
+            ),
             self.__get_one_by_id
         )
 
         self._register_action(
             'create_dummy',
-            ObjectSchema(True).with_required_property('dummy', DummySchema()),
+            ObjectSchema(True).with_optional_property('body',
+                ObjectSchema(True).with_required_property('dummy', DummySchema())
+            ),
             self.__create
         )
 
         self._register_action(
             'update_dummy',
-            ObjectSchema(True).with_required_property('dummy', DummySchema()),
+            ObjectSchema(True).with_optional_property('body',
+                ObjectSchema(True).with_required_property('dummy', DummySchema())
+            ),
             self.__update
         )
 
         self._register_action(
             'delete_dummy',
-            ObjectSchema(True).with_required_property('dummy_id', TypeCode.String),
+            ObjectSchema(True).with_optional_property('body',
+                ObjectSchema(True).with_required_property('dummy_id', TypeCode.String)
+            ),
             self.__delete_by_id
         )

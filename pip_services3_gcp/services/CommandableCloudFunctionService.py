@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
+
 import flask
 from pip_services3_commons.commands import CommandSet, ICommandable
 from pip_services3_commons.run import Parameters
-from pip_services3_rpc.services import HttpResponseSender
 
 from pip_services3_gcp.containers import CloudFunctionRequestHelper
 from pip_services3_gcp.services.CloudFunctionService import CloudFunctionService
@@ -90,6 +90,7 @@ class CommandableCloudFunctionService(CloudFunctionService):
                     return command.execute(correlation_id, args)
                 except Exception as e:
                     timing.end_failure(e)
+                    return self._compose_error(e)
                 finally:
                     timing.end_timing()
 

@@ -80,10 +80,10 @@ class CommandableCloudFunction(CloudFunction):
                         if isinstance(result, (dict, list, tuple, str, bytes, float, int)):
                             return result
                         else:
-                            JsonConverter.to_json(result)
+                            return JsonConverter.to_json(result)
                     except Exception as e:
                         timing.end_timing(e)
-                        raise e
+                        return self._compose_error(e)
 
                 return action
 

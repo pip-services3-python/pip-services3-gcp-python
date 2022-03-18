@@ -114,3 +114,11 @@ class DummyCloudFunctionFixture:
         })
 
         assert res.text == ''
+
+        # Failed validation
+        res = requests.post(self._base_url, json={
+            'cmd': 'dummies.create_dummy',
+            'dummy': None
+        })
+
+        assert res.json()['code'] == 'INVALID_DATA'

@@ -21,7 +21,7 @@ class CommandableCloudFunctionClient(CloudFunctionClient):
 
         - credentials:
             - account: the service account name
-            - auth_token:    Google-generated ID token or null if using custom auth (IAM)
+            - auth_token:    Google-generated ID token or None if using custom auth (IAM)
 
     ### References ###
         - `*:logger:*:*:1.0`           (optional) :class:`ILogger <pip_services3_components.log.ILogger.ILogger>` components to pass log messages

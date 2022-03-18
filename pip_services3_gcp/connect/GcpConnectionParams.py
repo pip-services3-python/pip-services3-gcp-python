@@ -13,7 +13,7 @@ class GcpConnectionParams(ConfigParams):
     Contains connection parameters to authenticate against Google
     and connect to specific Google Cloud Platform.
 
-    The class is able to compose and parse Google Function connection parameters.
+    The class is able to compose and parse Google Cloud Platform connection parameters.
 
     ### Configuration parameters ###
         - connections:
@@ -25,7 +25,7 @@ class GcpConnectionParams(ConfigParams):
             - org_id:        organization name
         - credentials:
             - account: the service account name
-            - auth_token:    Google-generated ID token or null if using custom auth (IAM)
+            - auth_token:    Google-generated ID token or None if using custom auth (IAM)
 
     In addition to standard parameters :class:`CredentialParams <pip_services3_components.auth.CredentialParams.CredentialParams>` may contain any number of custom parameters
 
@@ -63,9 +63,9 @@ class GcpConnectionParams(ConfigParams):
 
     def get_protocol(self) -> Optional[str]:
         """
-        Gets the Google function connection protocol.
+        Gets the Google Platform service connection protocol.
 
-        :return: the Google function connection protocol.
+        :return: the Google service connection protocol.
         """
         return super().get_as_nullable_string('protocol')
 
@@ -81,7 +81,7 @@ class GcpConnectionParams(ConfigParams):
         """
         Gets the Google Platform service uri.
 
-        :return: the Google function uri.
+        :return: the Google service uri.
         """
         return super().get_as_nullable_string('uri')
 
@@ -89,15 +89,15 @@ class GcpConnectionParams(ConfigParams):
         """
         Sets the Google Platform service uri.
 
-        :param: a new Google function uri.
+        :param: a new Google service uri.
         """
         super().put('uri', value)
 
     def get_function(self) -> Optional[str]:
         """
-        Gets the Google function name.
+        Gets the Google Platform service name.
 
-        :return: the Google function name.
+        :return: the Google service name.
         """
         return super().get_as_nullable_string('function')
 
@@ -272,4 +272,4 @@ class GcpConnectionParams(ConfigParams):
         """
 
         config = ConfigParams.from_tuples(*tuples)
-        return GcpConnectionParams(config)
+        return GcpConnectionParams.from_config(config)

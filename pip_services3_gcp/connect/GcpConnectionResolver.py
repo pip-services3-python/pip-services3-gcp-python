@@ -110,7 +110,7 @@ class GcpConnectionResolver(IConfigurable, IReferenceable):
             project_id = connection.get_project_id()
             region = connection.get_region()
             # https://YOUR_REGION-YOUR_PROJECT_ID.cloudfunctions.net/FUNCTION_NAME
-            uri = f'{protocol}://{region}-{project_id}.cloudfunctions.net/{function_name}'
+            uri = f'{protocol}://{region}-{project_id}.cloudfunctions.net/{function_name or ""}'
 
             connection.set_uri(uri)
         else:

@@ -89,7 +89,7 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pip_services3_commons.config.ConfigParams.ConfigParams</span></code></p>
 <p>Contains connection parameters to authenticate against Google
 and connect to specific Google Cloud Platform.</p>
-<p>The class is able to compose and parse Google Function connection parameters.</p>
+<p>The class is able to compose and parse Google Cloud Platform connection parameters.</p>
 <dl class="simple">
 <dt>### Configuration parameters ###</dt><dd><ul class="simple">
 <li><dl class="simple">
@@ -107,7 +107,7 @@ and connect to specific Google Cloud Platform.</p>
 <li><dl class="simple">
 <dt>credentials:</dt><dd><ul>
 <li><p>account: the service account name</p></li>
-<li><p>auth_token:    Google-generated ID token or null if using custom auth (IAM)</p></li>
+<li><p>auth_token:    Google-generated ID token or None if using custom auth (IAM)</p></li>
 </ul>
 </dd>
 </dl>
@@ -207,10 +207,10 @@ Tuples parameters contain a sequence of key1, value1, key2, value2, … pairs.</
 <dl class="py method">
 <dt class="sig sig-object py" id="pip_services3_gcp.connect.GcpConnectionParams.GcpConnectionParams.get_function">
 <span class="sig-name descname"><span class="pre">get_function</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pip_services3_gcp.connect.GcpConnectionParams.GcpConnectionParams.get_function" title="Permalink to this definition"></a></dt>
-<dd><p>Gets the Google function name.</p>
+<dd><p>Gets the Google Platform service name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the Google function name.</p>
+<dd class="field-odd"><p>the Google service name.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -240,10 +240,10 @@ Tuples parameters contain a sequence of key1, value1, key2, value2, … pairs.</
 <dl class="py method">
 <dt class="sig sig-object py" id="pip_services3_gcp.connect.GcpConnectionParams.GcpConnectionParams.get_protocol">
 <span class="sig-name descname"><span class="pre">get_protocol</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pip_services3_gcp.connect.GcpConnectionParams.GcpConnectionParams.get_protocol" title="Permalink to this definition"></a></dt>
-<dd><p>Gets the Google function connection protocol.</p>
+<dd><p>Gets the Google Platform service connection protocol.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the Google function connection protocol.</p>
+<dd class="field-odd"><p>the Google service connection protocol.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -265,7 +265,7 @@ Tuples parameters contain a sequence of key1, value1, key2, value2, … pairs.</
 <dd><p>Gets the Google Platform service uri.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the Google function uri.</p>
+<dd class="field-odd"><p>the Google service uri.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -368,7 +368,7 @@ The values are retrieves from “connection” and “credential” sections.</p
 <dd><p>Sets the Google Platform service uri.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Param</dt>
-<dd class="field-odd"><p>a new Google function uri.</p>
+<dd class="field-odd"><p>a new Google service uri.</p>
 </dd>
 </dl>
 </dd></dl>

@@ -35,7 +35,7 @@ class CloudFunctionClient(IOpenable, IConfigurable, IReferenceable):
 
         - credentials:
             - account: the service account name
-            - auth_token:    Google-generated ID token or null if using custom auth (IAM)
+            - auth_token:    Google-generated ID token or None if using custom auth (IAM)
 
     ### References ###
         - `*:logger:*:*:1.0`           (optional) :class:`ILogger <pip_services3_components.log.ILogger.ILogger>` components to pass log messages
@@ -166,8 +166,6 @@ class CloudFunctionClient(IOpenable, IConfigurable, IReferenceable):
 
         if self._connection.get_auth_token() is not None:
             self._headers['Authorization'] = 'bearer ' + self._connection.get_auth_token()
-
-        self._uri = self._connection.get_uri()
 
         try:
             self._uri = self._connection.get_uri()

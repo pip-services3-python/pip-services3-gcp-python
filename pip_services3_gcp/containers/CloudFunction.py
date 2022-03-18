@@ -3,12 +3,14 @@ import os
 import signal
 import sys
 import threading
+import traceback
 from abc import ABC
 from typing import Dict, Any, Callable, Optional
 
 import flask
 from pip_services3_commons.config import ConfigParams
-from pip_services3_commons.errors import UnknownException, BadRequestException
+from pip_services3_commons.convert import JsonConverter
+from pip_services3_commons.errors import UnknownException, BadRequestException, ErrorDescriptionFactory
 from pip_services3_commons.refer import DependencyResolver, IReferences, Descriptor
 from pip_services3_commons.validate import Schema
 from pip_services3_components.count import CompositeCounters
@@ -219,12 +221,13 @@ class CloudFunction(Container, ABC):
         def action_curl(req: flask.Request):
             # Perform validation
             if schema:
+                params = req.args.to_dict()
+                params.update({'body': req.json})
+
                 correlation_id = self._get_correlation_id(req)
-                err = schema.validate_and_return_exception(correlation_id,
-                                                           {} if not req.is_json else req.json,
-                                                           False)
+                err = schema.validate_and_return_exception(correlation_id, params, False)
                 if err is not None:
-                    raise err
+                    return self._compose_error(err)
             # Todo: perform verification?
             return action(req)
 
@@ -292,3 +295,27 @@ class CloudFunction(Container, ABC):
         :return: Return plugin function
         """
         return lambda req: self.__handler(req)
+
+    def _compose_error(self, error: Exception) -> flask.Response:
+        """
+        Compose error serialized as ErrorDescription object and appropriate HTTP status code.
+        If status code is not defined, it uses 500 status code.
+
+        :param error: an error object to be sent.
+        :return: HTTP response
+        """
+        basic_fillers = {'code': 'Undefined', 'status': 500, 'message': 'Unknown error',
+                         'name': None, 'details': None,
+                         'component': None, 'stack': None, 'cause': None}
+
+        if error is None:
+            error = type('error', (object,), basic_fillers)
+        else:
+            for k, v in basic_fillers.items():
+                error.__dict__[k] = v if error.__dict__.get(k) is None else error.__dict__[k]
+
+        headers = {'Content-Type': 'application/json'}
+        error = ErrorDescriptionFactory.create(error)
+        error.stack_trace = traceback.format_exc()
+
+        return flask.Response(JsonConverter.to_json(error), status=error.status, headers=headers)
