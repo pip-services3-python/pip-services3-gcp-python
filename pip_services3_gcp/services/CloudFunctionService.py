@@ -195,9 +195,11 @@ class CloudFunctionService(ICloudFunctionService, IOpenable, IConfigurable, IRef
 
                 # Perform validation
                 correlation_id = self._get_correlation_id(req)
-                schema.validate_and_throw_exception(correlation_id, {} if not req.is_json else req.get_json(), False)
-            result = action(req)
-            return result
+                err = schema.validate_and_return_exception(correlation_id, params, False)
+                if err is not None:
+                    return self._compose_error(err)
+
+            return action(req)
 
         return action_wrapper
 
