@@ -36,15 +36,12 @@ setup(
     zip_safe=True,
     platforms='any',
     install_requires=[
-        'functions-framework >= 2.0.3, < 3.0',
         'Flask >= 2.0.3, < 3.0',
-        'pytest >=7.0.1, < 8.0',
-        'urllib3 >=1.26.8, < 2.0',
 
-        'pip_services3_commons >=3.3.11, <4.0',
-        'pip_services3_components >=3.5.6, <4.0',
-        'pip_services3_container >=3.2.4, <4.0',
-        'pip_services3_rpc >=3.3.0, <4.0'
+        'pip_services3_commons >=3.3.12, <4.0',
+        'pip_services3_components >=3.5.9, <4.0',
+        'pip_services3_container >=3.2.5, <4.0',
+        'pip_services3_rpc >=3.3.2, <4.0'
     ],
     classifiers=[
         'Development Status :: 4 - Beta',
@@ -55,6 +52,7 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
         'Topic :: Software Development :: Libraries :: Python Modules'
     ]
 )
