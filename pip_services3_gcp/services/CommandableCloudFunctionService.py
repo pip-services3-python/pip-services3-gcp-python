@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
-
+import json
 import flask
+
+from typing import Any, Union
+
+from pip_services3_commons.data import DataPage
+from pip_services3_commons.convert import JsonConverter
 from pip_services3_commons.commands import CommandSet, ICommandable
 from pip_services3_commons.run import Parameters
 
 from pip_services3_gcp.containers import CloudFunctionRequestHelper
-from pip_services3_gcp.services.CloudFunctionService import CloudFunctionService
+from pip_services3_gcp.services import CloudFunctionService
 
 
 class CommandableCloudFunctionService(CloudFunctionService):
@@ -87,7 +92,10 @@ class CommandableCloudFunctionService(CloudFunctionService):
 
                 timing = self._instrument(correlation_id, name)
                 try:
-                    return command.execute(correlation_id, args)
+                    result = command.execute(correlation_id, args)
+                    # Conversion to response data format
+                    result = self.__to_response_format(result)
+                    return result
                 except Exception as e:
                     timing.end_failure(e)
                     return self._compose_error(e)
@@ -105,3 +113,18 @@ class CommandableCloudFunctionService(CloudFunctionService):
             name = command.get_name()
 
             self._register_action(name, None, wrapper(command))
+
+    def __to_response_format(self, res: Any) -> Union[dict, tuple]:
+        if res is None:
+            return '', 204
+        if not isinstance(res, (int, str, dict, tuple, list, bytes, float, flask.Response)):
+            if hasattr(res, 'to_dict'):
+                res = res.to_dict()
+            elif hasattr(res, 'to_json'):
+                if isinstance(res, DataPage) and len(res.data) > 0 and not isinstance(res.data[0], dict):
+                    res.data = json.loads(JsonConverter.to_json(res.data))
+                res = res.to_json()
+            else:
+                res = JsonConverter.to_json(res)
+
+        return res

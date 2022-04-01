@@ -23,12 +23,12 @@ except:
 
 setup(
     name='pip_services3_gcp',
-    version='3.0.0',
+    version='3.0.1',
     url='http://github.com/pip-services3-python/pip-services3-gcp-python',
     license='MIT',
     author='Conceptual Vision Consulting LLC',
-    author_email='judas.priest999@gmail.com',
-    description='Communication components for Pip.Services in Python',
+    author_email='seroukhov@gmail.com',
+    description='Google Cloud components for Pip.Services in Python',
     long_description=readme,
     long_description_content_type="text/markdown",
     packages=find_packages(exclude=['config', 'data', 'test']),

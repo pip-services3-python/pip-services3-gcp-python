@@ -2,7 +2,7 @@
 
 This module is a part of the [Pip.Services](http://pipservices.org) polyglot microservices toolkit.
 
-This module contains components for supporting work with the Google cloud platform.
+This module contains components for supporting work with the Google Cloud Platform.
 
 The module contains the following packages:
 - **Clients** - client components for working with Google Cloud Platform
@@ -13,11 +13,11 @@ The module contains the following packages:
 
 <a name="links"></a> Quick links:
 
-* [Configuration](https://www.pipservices.org/recipies/configuration)
+* [Configuration](http://docs.pipservices.org/toolkit/getting_started/configurations/)
 * [API Reference](https://pip-services3-python.github.io/pip-services3-gcp-python/index.html)
 * [Change Log](CHANGELOG.md)
-* [Get Help](https://www.pipservices.org/community/help)
-* [Contribute](https://www.pipservices.org/community/contribute)
+* [Get Help](http://docs.pipservices.org/get_help/)
+* [Contribute](http://docs.pipservices.org/contribute/)
 
 ## Use
 

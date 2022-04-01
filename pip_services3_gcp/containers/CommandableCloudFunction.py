@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
+import json
+from typing import Union, Any
+
 import flask
 
 from pip_services3_commons.commands import CommandSet, ICommandable
 from pip_services3_commons.convert import JsonConverter
+from pip_services3_commons.data import DataPage
 from pip_services3_commons.run import Parameters
 from pip_services3_rpc.services import HttpResponseSender
 
@@ -76,14 +80,14 @@ class CommandableCloudFunction(CloudFunction):
 
                     try:
                         result = command.execute(correlation_id, args)
-                        timing.end_timing()
-                        if isinstance(result, (dict, list, tuple, str, bytes, float, int)):
-                            return result
-                        else:
-                            return JsonConverter.to_json(result)
+                        # Conversion to response data format
+                        result = self.__to_response_format(result)
+                        return result
                     except Exception as e:
-                        timing.end_timing(e)
+                        timing.end_failure(e)
                         return self._compose_error(e)
+                    finally:
+                        timing.end_timing()
 
                 return action
 
@@ -96,3 +100,18 @@ class CommandableCloudFunction(CloudFunction):
         controller: ICommandable = self._dependency_resolver.get_one_required('controller')
         command_set = controller.get_command_set()
         self.__register_command_set(command_set)
+
+    def __to_response_format(self, res: Any) -> Union[dict, tuple]:
+        if res is None:
+            return '', 204
+        if not isinstance(res, (int, str, dict, tuple, list, bytes, float, flask.Response)):
+            if hasattr(res, 'to_dict'):
+                res = res.to_dict()
+            elif hasattr(res, 'to_json'):
+                if isinstance(res, DataPage) and len(res.data) > 0 and not isinstance(res.data[0], dict):
+                    res.data = json.loads(JsonConverter.to_json(res.data))
+                res = res.to_json()
+            else:
+                res = JsonConverter.to_json(res)
+
+        return res
