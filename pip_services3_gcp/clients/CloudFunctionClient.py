@@ -5,7 +5,8 @@ from typing import Any, Dict, Optional
 import requests
 from pip_services3_commons.config import IConfigurable, ConfigParams
 from pip_services3_commons.data import IdGenerator
-from pip_services3_commons.errors import ConnectionException, UnknownException, ApplicationExceptionFactory
+from pip_services3_commons.errors import ConnectionException, UnknownException, ApplicationExceptionFactory, \
+    ErrorDescription, ErrorCategory
 from pip_services3_commons.refer import IReferenceable, DependencyResolver, IReferences
 from pip_services3_commons.run import IOpenable
 from pip_services3_components.count import CompositeCounters
@@ -228,10 +229,17 @@ class CloudFunctionClient(IOpenable, IConfigurable, IReferenceable):
         if response.status_code == 204:
             return
 
-        data = {} if not response.content else response.json()
+        data = None if not response.content else response.json()
 
         # Restore application exception
         if response.status_code >= 400:
+            if data:
+                data = ErrorDescription.from_json(data)
+            else:
+                data = ErrorDescription()
+                data.code = response.status_code
+                data.message = response.reason
+                data.category = ErrorCategory.Unknown
             raise ApplicationExceptionFactory.create(data).with_cause(Exception(response.text))
 
         return data

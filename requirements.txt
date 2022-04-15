@@ -1,10 +1,10 @@
 pytest
-functions-framework >=2.0.3, <3.0
+functions-framework >= 2.0.3, <3.0
 urllib3 >=1.26.8, < 2.0
 
-pip_services3_commons >=3.3.12, <4.0
-pip_services3_components >=3.5.9, <4.0
-pip_services3_container >=3.2.5, <4.0
-pip_services3_rpc >=3.3.2, <4.0
+pip_services3_commons >= 3.3.14, <4.0
+pip_services3_components >= 3.5.9, <4.0
+pip_services3_container >= 3.2.5, <4.0
+pip_services3_rpc >= 3.3.2, <4.0
 
-Flask >=2.0.3, <3.0
+Flask >= 2.0.3, <3.0

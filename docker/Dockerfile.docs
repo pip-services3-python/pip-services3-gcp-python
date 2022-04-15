@@ -9,7 +9,7 @@ ENV COMPONENT_NAME=$COMPONENT_NAME
 
 # install dependencies
 RUN pip install -e .
-RUN pip install -U sphinx
+RUN pip install -U sphinx==4.5.0
 RUN pip install sphinx-rtd-theme
 
 # docs generation

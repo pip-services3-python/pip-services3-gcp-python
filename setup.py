@@ -23,7 +23,7 @@ except:
 
 setup(
     name='pip_services3_gcp',
-    version='3.0.1',
+    version='3.0.2',
     url='http://github.com/pip-services3-python/pip-services3-gcp-python',
     license='MIT',
     author='Conceptual Vision Consulting LLC',
@@ -38,7 +38,7 @@ setup(
     install_requires=[
         'Flask >= 2.0.3, < 3.0',
 
-        'pip_services3_commons >=3.3.12, <4.0',
+        'pip_services3_commons >=3.3.14, <4.0',
         'pip_services3_components >=3.5.9, <4.0',
         'pip_services3_container >=3.2.5, <4.0',
         'pip_services3_rpc >=3.3.2, <4.0'
