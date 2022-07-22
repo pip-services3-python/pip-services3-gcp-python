@@ -44,10 +44,10 @@ class GcpConnectionParams(ConfigParams):
             'credential.auth_token', '1234',
         )
 
-        uri = connection.get_function_uri()            # Result: 'http://east-my_test_project.cloudfunctions.net/myfunction'
+        uri = connection.get_uri()            # Result: 'http://east-my_test_project.cloudfunctions.net/myfunction'
         region = connection.get_region()               # Result: 'east'
         protocol = connection.get_protocol()           # Result: 'http'
-        functionName = connection.get_function_name()  # Result: 'myfunction'
+        functionName = connection.get_function()  # Result: 'myfunction'
         projectId = connection.get_project_id()        # Result: 'my_test_project'
         authToken = connection.get_auth_token()        # Result: '123'
 
