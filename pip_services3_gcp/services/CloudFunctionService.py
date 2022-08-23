@@ -183,7 +183,7 @@ class CloudFunctionService(ICloudFunctionService, IOpenable, IConfigurable, IRef
         self.__actions = []
         self.__interceptors = []
 
-    def _apply_validation(self, schema: Schema, action: Callable[[flask.Request], Any]) -> Callable[
+    def _apply_validation(self, schema: Schema, action: Callable[[flask.Request], None]) -> Callable[
         [flask.Request], Any]:
         # Create an action function
 
@@ -203,7 +203,7 @@ class CloudFunctionService(ICloudFunctionService, IOpenable, IConfigurable, IRef
 
         return action_wrapper
 
-    def _apply_interceptors(self, action: Callable[[flask.Request], Any]) -> Callable[[flask.Request], Any]:
+    def _apply_interceptors(self, action: Callable[[flask.Request], None]) -> Callable[[flask.Request], None]:
         action_wrapper = action
 
         index = len(self.__interceptors) - 1
@@ -220,7 +220,7 @@ class CloudFunctionService(ICloudFunctionService, IOpenable, IConfigurable, IRef
 
         return cmd
 
-    def _register_action(self, name: str, schema: Schema, action: Callable[[flask.Request], Any]):
+    def _register_action(self, name: str, schema: Schema, action: Callable[[flask.Request], None]):
         """
         Registers a action in Google Function function.
 

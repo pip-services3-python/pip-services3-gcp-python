@@ -7,7 +7,7 @@ from pip_services3_commons.validate import Schema
 
 class CloudFunctionAction:
 
-    def __init__(self, cmd: str = None, schema: Schema = None, action: Callable[[flask.Request], Any] = None):
+    def __init__(self, cmd: str = None, schema: Schema = None, action: Callable[[flask.Request], None] = None):
         # Command to call the action
         self.cmd: str = cmd
 
