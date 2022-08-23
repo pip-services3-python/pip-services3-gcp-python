@@ -278,7 +278,7 @@ class CloudFunction(Container, ABC):
                 'NO_COMMAND',
                 'Cmd parameter is missing'
             )
-        action = self._actions[cmd]
+        action = self._actions.get(cmd)
         if not action:
             raise BadRequestException(
                 correlation_id,
