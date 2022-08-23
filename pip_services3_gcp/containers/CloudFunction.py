@@ -86,13 +86,15 @@ class CloudFunction(Container, ABC):
 
     def __capture_errors(self, correlation_id: Optional[str]):
         def handle_exception(exc_type, exc_value, exc_traceback):
-            self._logger.fatal(correlation_id, exc_value, "Process is terminated")
+            self._logger.fatal(correlation_id, exc_value,
+                               "Process is terminated")
             sys.exit(1)
 
         sys.excepthook = handle_exception
 
     def __capture_exit(self, correlation_id: Optional[str]):
-        self._logger.info(correlation_id, "Press Control-C to stop the microservice...")
+        self._logger.info(
+            correlation_id, "Press Control-C to stop the microservice...")
 
         # Activate graceful exit
         signal.signal(signal.SIGINT, lambda signum, frame: sys.exit())
@@ -123,7 +125,8 @@ class CloudFunction(Container, ABC):
 
         :param correlation_id: (optional) transaction id to trace execution through call chain.
         """
-        if self.is_open(): return
+        if self.is_open():
+            return
 
         super().open(correlation_id)
         self._register_services()
@@ -181,8 +184,10 @@ class CloudFunction(Container, ABC):
         Registers all Google Function services in the container.
         """
         # Extract regular and commandable Google Function services from references
-        services = self._references.get_optional(Descriptor("*", "service", "gcp-function", "*", "*"))
-        cmd_services = self._references.get_optional(Descriptor("*", "service", "commandable-gcp-function", "*", "*"))
+        services = self._references.get_optional(
+            Descriptor("*", "service", "gcp-function", "*", "*"))
+        cmd_services = self._references.get_optional(Descriptor(
+            "*", "service", "commandable-gcp-function", "*", "*"))
 
         services.extend(cmd_services)
 
@@ -195,7 +200,7 @@ class CloudFunction(Container, ABC):
             for action in actions:
                 self._register_action(action.cmd, action.schema, action.action)
 
-    def _register_action(self, cmd: str, schema: Optional[Schema], action: Callable[[flask.Request], None]):
+    def _register_action(self, cmd: str, schema: Schema, action: Callable[[flask.Request], Any]):
         """
         Registers an action in this Google Function.
 
@@ -212,10 +217,12 @@ class CloudFunction(Container, ABC):
             raise UnknownException(None, 'NO_ACTION', 'Missing action')
 
         if not callable(action):
-            UnknownException(None, 'ACTION_NOT_FUNCTION', 'Action is not a function')
+            UnknownException(None, 'ACTION_NOT_FUNCTION',
+                             'Action is not a function')
 
         if cmd in self._actions.keys():
-            raise UnknownException(None, 'DUPLICATED_ACTION', f'"{cmd}" action already exists')
+            raise UnknownException(
+                None, 'DUPLICATED_ACTION', f'"{cmd}" action already exists')
 
         # Hack!!! Wrapping action to preserve prototyping context
         def action_curl(req: flask.Request):
@@ -225,7 +232,8 @@ class CloudFunction(Container, ABC):
                 params.update({'body': req.json})
 
                 correlation_id = self._get_correlation_id(req)
-                err = schema.validate_and_return_exception(correlation_id, params, False)
+                err = schema.validate_and_return_exception(
+                    correlation_id, params, False)
                 if err is not None:
                     return self._compose_error(err)
             # Todo: perform verification?
@@ -288,7 +296,7 @@ class CloudFunction(Container, ABC):
         self.run()
         return self._execute(req)
 
-    def get_handler(self) -> Callable[[flask.Request], None]:
+    def get_handler(self) -> Callable[[flask.Request], Any]:
         """
         Gets entry point into this Google Function.
 
@@ -312,7 +320,8 @@ class CloudFunction(Container, ABC):
             error = type('error', (object,), basic_fillers)
         else:
             for k, v in basic_fillers.items():
-                error.__dict__[k] = v if error.__dict__.get(k) is None else error.__dict__[k]
+                error.__dict__[k] = v if error.__dict__.get(
+                    k) is None else error.__dict__[k]
 
         headers = {'Content-Type': 'application/json'}
         error = ErrorDescriptionFactory.create(error)

@@ -183,8 +183,8 @@ class CloudFunctionService(ICloudFunctionService, IOpenable, IConfigurable, IRef
         self.__actions = []
         self.__interceptors = []
 
-    def _apply_validation(self, schema: Optional[Schema], action: Callable[[flask.Request], None]) -> Callable[
-        [flask.Request], Any]:
+    def _apply_validation(self, schema: Schema, action: Callable[[flask.Request], Any]) -> Callable[
+            [flask.Request], Any]:
         # Create an action function
 
         def action_wrapper(req: flask.Request):
@@ -195,7 +195,8 @@ class CloudFunctionService(ICloudFunctionService, IOpenable, IConfigurable, IRef
 
                 # Perform validation
                 correlation_id = self._get_correlation_id(req)
-                err = schema.validate_and_return_exception(correlation_id, params, False)
+                err = schema.validate_and_return_exception(
+                    correlation_id, params, False)
                 if err is not None:
                     return self._compose_error(err)
 
@@ -203,13 +204,14 @@ class CloudFunctionService(ICloudFunctionService, IOpenable, IConfigurable, IRef
 
         return action_wrapper
 
-    def _apply_interceptors(self, action: Callable[[flask.Request], None]) -> Callable[[flask.Request], None]:
+    def _apply_interceptors(self, action: Callable[[flask.Request], Any]) -> Callable[[flask.Request], Any]:
         action_wrapper = action
 
         index = len(self.__interceptors) - 1
         while index >= 0:
             interceptor = self.__interceptors[index]
-            action_wrapper = lambda action: lambda params: interceptor(params, action)(action_wrapper)
+            def action_wrapper(action): return lambda params: interceptor(
+                params, action)(action_wrapper)
 
         return action_wrapper
 
@@ -220,7 +222,7 @@ class CloudFunctionService(ICloudFunctionService, IOpenable, IConfigurable, IRef
 
         return cmd
 
-    def _register_action(self, name: str, schema: Optional[Schema], action: Callable[[flask.Request], None]):
+    def _register_action(self, name: str, schema: Schema, action: Callable[[flask.Request], Any]):
         """
         Registers a action in Google Function function.
 
@@ -236,7 +238,7 @@ class CloudFunctionService(ICloudFunctionService, IOpenable, IConfigurable, IRef
 
         self.__actions.append(register_action)
 
-    def _register_action_with_auth(self, name: str, schema: Optional[Schema],
+    def _register_action_with_auth(self, name: str, schema: Schema,
                                    authorize: Callable[[Any, Callable[[Any], Any]], Any], action: Callable[[Any], Any]):
         """
         Registers an action with authorization.
@@ -249,7 +251,7 @@ class CloudFunctionService(ICloudFunctionService, IOpenable, IConfigurable, IRef
         action_wrapper = self._apply_validation(schema, action)
 
         # Add authorization just before validation
-        action_wrapper = lambda req: authorize(req, action_wrapper)
+        def action_wrapper(req): return authorize(req, action_wrapper)
 
         action_wrapper = self._apply_interceptors(action_wrapper)
 
@@ -310,7 +312,8 @@ class CloudFunctionService(ICloudFunctionService, IOpenable, IConfigurable, IRef
             error = type('error', (object,), basic_fillers)
         else:
             for k, v in basic_fillers.items():
-                error.__dict__[k] = v if error.__dict__.get(k) is None else error.__dict__[k]
+                error.__dict__[k] = v if error.__dict__.get(
+                    k) is None else error.__dict__[k]
 
         headers = {'Content-Type': 'application/json'}
         error = ErrorDescriptionFactory.create(error)
