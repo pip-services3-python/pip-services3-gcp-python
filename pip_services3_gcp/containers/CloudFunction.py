@@ -195,7 +195,7 @@ class CloudFunction(Container, ABC):
             for action in actions:
                 self._register_action(action.cmd, action.schema, action.action)
 
-    def _register_action(self, cmd: str, schema: Schema, action: Callable[[flask.Request], None]):
+    def _register_action(self, cmd: str, schema: Optional[Schema], action: Callable[[flask.Request], None]):
         """
         Registers an action in this Google Function.
 
