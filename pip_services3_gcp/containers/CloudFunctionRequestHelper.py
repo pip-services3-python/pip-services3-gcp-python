@@ -36,7 +36,7 @@ class CloudFunctionRequestHelper:
         :param req: the Google Function request
         :return: returns command from request
         """
-        cmd = req.view_args.get('correlation_id', '')
+        cmd = req.view_args.get('cmd', '')
         try:
             if cmd == '' and req.is_json:
                 cmd = req.json.get('cmd', '')
