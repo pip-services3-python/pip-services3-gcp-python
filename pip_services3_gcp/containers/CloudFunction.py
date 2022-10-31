@@ -273,14 +273,14 @@ class CloudFunction(Container, ABC):
         cmd = self._get_command(req)
         correlation_id = self._get_correlation_id(req)
         if not cmd:
-            raise BadRequestException(
+            return BadRequestException(
                 correlation_id,
                 'NO_COMMAND',
                 'Cmd parameter is missing'
             )
         action = self._actions.get(cmd)
         if not action:
-            raise BadRequestException(
+            return BadRequestException(
                 correlation_id,
                 'NO_ACTION',
                 'Action ' + cmd + ' was not found'

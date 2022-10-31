@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import re
 import traceback
 from abc import abstractmethod
 from typing import List, Optional, Callable, Any
@@ -89,7 +90,7 @@ class CloudFunctionService(ICloudFunctionService, IOpenable, IConfigurable, IRef
         """
         self.__name: str = name
         self.__actions: List[CloudFunctionAction] = []
-        self.__interceptors = []
+        self.__interceptors: List[Callable[[flask.Request, Callable[[flask.Request], Any]], Any]] = []
         self.__opened: bool = False
 
         # The dependency resolver.
@@ -251,7 +252,7 @@ class CloudFunctionService(ICloudFunctionService, IOpenable, IConfigurable, IRef
         action_wrapper = self._apply_validation(schema, action)
 
         # Add authorization just before validation
-        def action_wrapper(req): return authorize(req, action_wrapper)
+        action_wrapper = lambda req: authorize(req, action_wrapper)
 
         action_wrapper = self._apply_interceptors(action_wrapper)
 
@@ -260,13 +261,23 @@ class CloudFunctionService(ICloudFunctionService, IOpenable, IConfigurable, IRef
 
         self.__actions.append(register_action)
 
-    def _register_interceptor(self, action: Callable[[Any, Callable[[Any], Any]], Any]):
+    def _register_interceptor(self, cmd: str, action: Callable[[flask.Request], Any]):
         """
         Registers a middleware for actions in Google Function service.
 
+        :param cmd: the command name for intercept or regex.
         :param action: an action function that is called when middleware is invoked.
         """
-        self.__interceptors.append(action)
+
+        def intercept_wrapper(req: flask.Request, next: Callable[[flask.Request], Any]) -> Any:
+            currCmd = self._get_command(req)
+            match = re.match('.*' + cmd, currCmd) is not None
+            if cmd is not None and cmd != '' and not match:
+                return next(req)
+            else:
+                return action(req)
+
+        self.__interceptors.append(intercept_wrapper)
 
     @abstractmethod
     def register(self):

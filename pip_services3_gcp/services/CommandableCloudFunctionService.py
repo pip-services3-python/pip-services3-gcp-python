@@ -39,7 +39,7 @@ class CommandableCloudFunctionService(CloudFunctionService):
 
             class MyCommandableCloudFunctionService(CommandableCloudFunctionService):
                 def __init__(self):
-                    super().__init__()
+                    super().__init__("mydata")
                     self._dependency_resolver.put(
                         "controller",
                         Descriptor("mygroup","controller","*","*","1.0")
@@ -95,12 +95,11 @@ class CommandableCloudFunctionService(CloudFunctionService):
                     result = command.execute(correlation_id, args)
                     # Conversion to response data format
                     result = self.__to_response_format(result)
+                    timing.end_timing()
                     return result
                 except Exception as e:
                     timing.end_failure(e)
                     return self._compose_error(e)
-                finally:
-                    timing.end_timing()
 
             return action
 

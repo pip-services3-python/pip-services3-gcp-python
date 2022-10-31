@@ -33,7 +33,10 @@ class CloudFunctionClient(IOpenable, IConfigurable, IReferenceable):
             - region:        is the region where your function is deployed
             - function:      is the name of the HTTP function you deployed
             - org_id:        organization name
-
+        - options:
+            - retries:               number of retries (default: 3)
+            - connect_timeout:       connection timeout in milliseconds (default: 10 sec)
+            - timeout:               invocation timeout in milliseconds (default: 10 sec)
         - credentials:
             - account: the service account name
             - auth_token:    Google-generated ID token or None if using custom auth (IAM)
@@ -81,7 +84,7 @@ class CloudFunctionClient(IOpenable, IConfigurable, IReferenceable):
         # The Google Cloud connection parameters
         self._connection: GcpConnectionParams = None
 
-        self._retries = 1
+        self._retries = 3
 
         # The default headers to be added to every request.
         self._headers: Dict[str, Any] = {}
@@ -120,6 +123,8 @@ class CloudFunctionClient(IOpenable, IConfigurable, IReferenceable):
         self._dependency_resolver.configure(config)
 
         self._connect_timeout = config.get_as_integer_with_default('options.connect_timeout', self._connect_timeout)
+        self._retries = config.get_as_integer_with_default("options.retries", self._retries)
+        self._timeout = config.get_as_integer_with_default("options.timeout", self._timeout)
 
     def set_references(self, references: IReferences):
         """
@@ -217,11 +222,11 @@ class CloudFunctionClient(IOpenable, IConfigurable, IReferenceable):
 
     def _invoke(self, cmd: str, correlation_id: Optional[str], args: dict = None) -> Optional[dict]:
         if not cmd:
-            raise UnknownException(None, 'NO_COMMAND', 'Missing Seneca pattern cmd')
+            raise UnknownException(None, 'NO_COMMAND', 'Cmd parameter is missing')
 
         args = deepcopy(args or {})
         args['cmd'] = cmd
-        args['correlation_id'] = correlation_id or IdGenerator.next_short()
+        args['correlation_id'] = correlation_id
 
         response = self._client.post(self._uri, json=args)
 
