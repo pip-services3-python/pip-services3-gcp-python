@@ -1,5 +1,5 @@
 {
-    "name":  "pip_services3_gcp",
+    "name":  "pip-services3-gcp",
     "type": "module",
     "language": "python",
     "version": "3.0.3",
