@@ -1,11 +1,14 @@
 # <img src="https://uploads-ssl.webflow.com/5ea5d3315186cf5ec60c3ee4/5edf1c94ce4c859f2b188094_logo.svg" alt="Pip.Services Logo" width="200">
 <br/> Google Cloud Platform specific components for Python Changelog
 
-## <a name="3.0.3"></a> 3.0.3 (2022-10-31)
+## <a name="3.0.3-3.0.4"></a> 3.0.3-3.0.4 (2022-10-31)
 
 ### Features
 * Added interceptors by command name and regex
 * Added more config parameters for clients
+
+### Bug Fixes
+* Fixed error returning
 
 ## <a name="3.0.2"></a> 3.0.2 (2022-04-15)
 

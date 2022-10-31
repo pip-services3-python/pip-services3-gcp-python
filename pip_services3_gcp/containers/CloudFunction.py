@@ -277,14 +277,14 @@ class CloudFunction(Container, ABC):
                 correlation_id,
                 'NO_COMMAND',
                 'Cmd parameter is missing'
-            )
+            ).to_json()
         action = self._actions.get(cmd)
         if not action:
             return BadRequestException(
                 correlation_id,
                 'NO_ACTION',
                 'Action ' + cmd + ' was not found'
-            ).with_details('command', cmd)
+            ).with_details('command', cmd).to_json()
 
         return action(req)
 
